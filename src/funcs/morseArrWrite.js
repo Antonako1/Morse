@@ -11,7 +11,7 @@ function writeAlphabet(morse, colours){
 
             // TODO Adds to txt 
             // spaceAmount = makeSpace(i, morse);
-            txt += ` ${colours.green}${morse[i][0]}${colours.reset}${spaceAmount}${colours.magenta}${morse[i][1]}${colours.reset} | `
+            txt += ` ${colours.green}${morse[i][0]}${colours.reset}${spaceAmount}= ${colours.magenta}${morse[i][1]}${colours.reset} | `
 
             // Every 10th character is linebreak
             if (i !== 0 && (i + 1) % 10 === 0 && i !== 49) {

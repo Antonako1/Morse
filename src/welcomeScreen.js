@@ -56,9 +56,8 @@ const rl = readline.createInterface({
 });
 
 // Handle arrow key presses
-process.stdin.on('keypress', (ch, key) => {
+const keypressListener2 = (ch, key) => {
     if (key) {
-        console.log(key.name)
         switch (key.name) {
             case 'up': // Arrow up
                 if (selectedOptionIndex > 0) {
@@ -73,15 +72,18 @@ process.stdin.on('keypress', (ch, key) => {
                 welcomeScreen(morseG, coloursG)
                 break;
             case 'return':
-                rl.close();
-                process.stdin.pause();
-
                 // Sends chosen level, alphabet and colours
-                handleMenuSelection(levels[selectedOptionIndex], morseG, coloursG);
+                process.stdin.removeListener('keypress', keypressListener2);
+                // process.stdin.pause();
+                // rl.close();
+                // process.stdin.setRawMode(false);
+                handleMenuSelection(levels[selectedOptionIndex], morseG, coloursG, null);
+                
                 break;
         }
     }
-  });
+  };
+  process.stdin.on('keypress', keypressListener2);
   
   // Enable listening for keypress events
   process.stdin.setRawMode(true);

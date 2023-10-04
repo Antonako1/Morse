@@ -10,13 +10,11 @@ function readCommandLine() {
         output: process.stdout
       });
 
+      rl.question('Write your morse here: \n', (answer) => {
+        
+        console.log(answer)
 
-      /**
-       * Asks questions
-       */
-      rl.question('Write morse', (answer) => {
-
-        rl.close();
+      rl.close();
       });
 }
 
