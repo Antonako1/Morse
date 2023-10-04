@@ -28,7 +28,7 @@ async function tutorial(morse, colours, chosenLevel){
             output: process.stdout
           });
     
-          rl.question('Write your morse here: \n', (answer) => {
+          rl.question(`Turn: \'${colours.magenta}${chosenLevel.text}${colours.reset}\'to morse: \n`, (answer) => {
             
             console.log(answer)
     

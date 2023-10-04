@@ -3,7 +3,7 @@ const mainMenu = require("./mainMenu");
 const handleMenuSelection = require("./handleMenuSelection")
 
 const cls = require("./funcs/cls")
-const readline = require('readline');
+
 const keypress = require('keypress');
 
 // Globals
@@ -49,12 +49,6 @@ const levels = ['Tutorial', 'Training', 'Easy', 'Hard', 'Quit'];
 let selectedOptionIndex = 0;
 
 
-// Initialize readline interface
-const rl = readline.createInterface({
-    input: process.stdin,
-    output: process.stdout,
-});
-
 // Handle arrow key presses
 const keypressListener2 = (ch, key) => {
     if (key) {
@@ -84,10 +78,7 @@ const keypressListener2 = (ch, key) => {
     }
   };
   process.stdin.on('keypress', keypressListener2);
-  
-  // Enable listening for keypress events
-  process.stdin.setRawMode(true);
-  process.stdin.resume();
+
 
 
 

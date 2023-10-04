@@ -98,11 +98,7 @@ let index = 0;
 // Memory for enter
 let enterMem = 0;
 
-// Initialize readline interface
-const rl = readline.createInterface({
-    input: process.stdin,
-    output: process.stdout,
-});
+
 
 // Handle arrow key presses
 const keypressListener = (ch, key) => {
@@ -126,9 +122,6 @@ const keypressListener = (ch, key) => {
                 if(enterMem === 3){
                     process.stdin.removeListener('keypress', keypressListener);
                     handleMenuSelection(levelG, morseG, coloursG, true);
-                    rl.close();
-                    process.stdin.pause();
-                    process.stdin.setRawMode(false);
                     enterMem = 0;
                 }
                 break;
@@ -137,9 +130,7 @@ const keypressListener = (ch, key) => {
   };
   
   process.stdin.on('keypress', keypressListener);
-// Enable listening for keypress events
-process.stdin.setRawMode(true);
-process.stdin.resume();
+
 
 
 module.exports = handleMenuSelection;

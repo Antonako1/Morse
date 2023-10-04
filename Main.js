@@ -1,3 +1,4 @@
+const readline = require('readline');
 /**
  * MAIN FUNCTION
  *  
@@ -80,6 +81,18 @@ const colours = {
     white: "\x1b[37m",
   };  
 
+
+  
+
+// Initialize readline interface
+const rl = readline.createInterface({
+    input: process.stdin,
+    output: process.stdout,
+});
+  
+// Enable listening for keypress events
+process.stdin.setRawMode(true);
+process.stdin.resume();
 // Main function :))
 function main(){
     welcomeScreen(alphabets, colours);
