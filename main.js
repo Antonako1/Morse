@@ -10,6 +10,7 @@ const readline = require('readline');
 const readCommandLine = require("./src/readCommandLine");
 const welcomeScreen = require("./src/welcomeScreen");
 const writeCommandLine = require("./src/writeCommandLine");
+const cls = require('./src/funcs/cls');
 
 /**
  * Contains nordic morse alphabet
@@ -84,9 +85,12 @@ const colours = {
 // Enable listening for keypress events
 // Main function :))
 function main(){
+    cls();
     welcomeScreen(alphabets, colours);
 }
 process.stdin.setRawMode(true);
 process.stdin.resume();
 
 main();
+
+module.exports = main;

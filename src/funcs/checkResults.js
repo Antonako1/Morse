@@ -8,7 +8,7 @@ const path = require('path');
  * @param {String} realString Real answer from the files
  * @param {String} levelName Levels name.
  */
-async function checkResults(userString, realString, levelName){
+function checkResults(userString, realString, levelName){
     let text = "";
     if(userString === realString){
         text = "You passed!"
@@ -19,20 +19,21 @@ async function checkResults(userString, realString, levelName){
     
     // Save data
     try {
-        const filePath = path.join(__dirname, 'data', 'results', `${levelName}`);
-        // const filePath = `../data/results`
+        const resultsDir = path.join(__dirname, '..', 'data', 'results');
         let i = 0;
-        while(true){
-            if(fs.existsSync(filePath + ".txt")){
-                filePath += "" + i;
-            } else {
-                break; 
+        let filePath = path.join(resultsDir, `${levelName}.txt`)
+
+        while (true) {
+            if (!fs.existsSync(filePath)) {
+                break;
             }
             i++;
+            filePath = path.join(resultsDir, `${levelName}${i}.txt`);
         }
-        const data = `${text} ${levelName}`
-        try {
-            fs.writeFileSync(`${filePath}.txt`, data)
+
+        const data = `${text} ${levelName}. You wrote: ${userString}. Correct answer was: ${realString}`;
+        try{
+            fs.writeFileSync(filePath, data);
         } catch (error) {
             console.error("New error saving results", error)
         }

@@ -1,5 +1,5 @@
 @echo off
 
-node Main.js
+node nain.js
 
 exit

@@ -1,3 +1,4 @@
+const main = require("../../main");
 const checkResults = require("../funcs/checkResults");
 const cls = require("../funcs/cls");
 const writeAlphabet = require("../funcs/morseArrWrite");
@@ -30,15 +31,28 @@ async function tutorial(morse, colours, chosenLevel){
             output: process.stdout
         });
         process.stdin.setRawMode(false);
-        rl.question(`Turn: \'${colours.magenta}${chosenLevel.text}${colours.reset}\'to morse: \n`, (answer) => {
-            
-            process.stdout.write(checkResults(answer, chosenLevel.inMorse, chosenLevel.name))
 
-            
-        rl.close();
+
+
+        // TODO I
+        // TODO V
+        rl.question(`Turn: \'${colours.magenta}${chosenLevel.text}${colours.reset}\' to morse: \n`, (answer) => {
+            const results = checkResults(answer, chosenLevel.inMorse, chosenLevel.name);
+            console.log(results);
+        
+            rl.question("Return to main screen? y/n: ", (answer2) => {
+                if (answer2.toLowerCase() === "y") {
+                    rl.close();
+                    console.log("A")
+                    main();
+                } else if (answer2.toLowerCase() === "n") {
+                    rl.close();
+                } else {
+                    console.log("Invalid input. Please enter 'y' or 'n'.");
+                    rl.prompt(true);
+                }
+            });
         });
-        
-        
     } catch (error) {
         console.error("Error loading tutorial:", error)
     }
