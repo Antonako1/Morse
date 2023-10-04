@@ -37,4 +37,4 @@ npm install
 
 node Main.js
 :: Pause to view the output (remove in production)
-pause
+exit
