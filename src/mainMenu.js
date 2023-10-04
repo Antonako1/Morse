@@ -3,7 +3,7 @@
  * 
  * @param {[LevelsArray]} levels 
  * @param {Number} selectedOptionIndex 
- * @param {[]} colours
+ * @param {{}} colours
  * @returns String
  */
 function mainMenu(levels, selectedOptionIndex, colours){

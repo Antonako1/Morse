@@ -83,9 +83,6 @@ const colours = {
 // Main function :))
 function main(){
     welcomeScreen(alphabets, colours);
-    // readCommandLine();
-    
-    // writeCommandLine();
 }
 
 main();

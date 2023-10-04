@@ -1,18 +1,22 @@
 const cls = require("./funcs/cls");
+const tutorial = require("./levels/tutorial");
 
 /**
  * Handles level choosing
+ * 
  * @param {String} level 
+ * @param {[]} morse 
+ * @param {{}} colours 
  */
-function handleMenuSelection(level){
+function handleMenuSelection(level, morse, colours){
     cls();
     switch(level){
         case "Quit":
-            process.stdout.write("Exiting");
+            process.stdout.write("Shutting down \n");
             process.exit();
             break;
         case "Tutorial":
-
+            tutorial();
             break;
         case "Training":
 

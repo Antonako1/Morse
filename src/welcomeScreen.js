@@ -13,14 +13,13 @@ let morseG, coloursG = null
  * Start screen of application
  * 
  * @param {[alphabets]} morse 
- * @param {[coloursArr]} colours 
+ * @param {{}} colours 
  */
 function welcomeScreen(morse, colours) {
     morseG = morse;
     coloursG = colours
     try {
         cls();
-        console.log(selectedOptionIndex)
         const txt = writeAlphabet(morse, colours)
 
         // Writes morse alphabet
@@ -29,8 +28,8 @@ function welcomeScreen(morse, colours) {
         // Writes movement info
         process.stdout.write(`\n Move with ${colours.blue}arrow${colours.reset} buttons, press ${colours.blue}enter${colours.reset} to choose it. \n`)
 
+        // Writes menu
         const result = mainMenu(levels, selectedOptionIndex, colours)
-        // const resultText = result.txt
         process.stdout.write(result)
     } catch (error) {
         console.error("Error loading main screen:", error)
@@ -59,24 +58,28 @@ const rl = readline.createInterface({
 // Handle arrow key presses
 process.stdin.on('keypress', (ch, key) => {
     if (key) {
+        console.log(key.name)
         switch (key.name) {
-        case 'up':
-            if (selectedOptionIndex > 0) {
-                selectedOptionIndex--;
-            }
-            break;
-        case 'down':
-            if (selectedOptionIndex < levels.length - 1) {
-                selectedOptionIndex++;
-            }
-            break;
-        case 'return':
-            handleMenuSelection(levels[selectedOptionIndex]);
-            rl.close();
-            process.stdin.pause();
-            break;
+            case 'up': // Arrow up
+                if (selectedOptionIndex > 0) {
+                    selectedOptionIndex -= 0.5;
+                }
+                welcomeScreen(morseG, coloursG)
+                break;
+            case 'down': // Arrow down
+                if (selectedOptionIndex < levels.length - 1) {
+                    selectedOptionIndex += 0.5;
+                }
+                welcomeScreen(morseG, coloursG)
+                break;
+            case 'return':
+                rl.close();
+                process.stdin.pause();
+
+                // Sends chosen level, alphabet and colours
+                handleMenuSelection(levels[selectedOptionIndex], morseG, coloursG);
+                break;
         }
-        welcomeScreen(morseG, coloursG)
     }
   });
   
