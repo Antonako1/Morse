@@ -45,7 +45,7 @@ function welcomeScreen(morse, colours) {
 keypress(process.stdin);
 
 // Define levels and initial selection
-const levels = ['Tutorial', 'Training', 'Easy', 'Hard', 'Quit'];
+const levels = ['Tutorial', 'Training', 'Easy Mode', 'Hard Mode', 'Text to Morse', 'Morse to Text', 'Quit'];
 let selectedOptionIndex = 0;
 
 
@@ -55,22 +55,22 @@ const keypressListener2 = (ch, key) => {
         switch (key.name) {
             case 'up': // Arrow up
                 if (selectedOptionIndex > 0) {
-                    selectedOptionIndex -= 0.5;
+                    selectedOptionIndex -= 1;
                 }
                 welcomeScreen(morseG, coloursG)
                 break;
             case 'down': // Arrow down
                 if (selectedOptionIndex < levels.length - 1) {
-                    selectedOptionIndex += 0.5;
+                    selectedOptionIndex += 1;
                 }
                 welcomeScreen(morseG, coloursG)
                 break;
             case 'return':
                 // Sends chosen level, alphabet and colours
                 process.stdin.removeListener('keypress', keypressListener2);
+                // process.stdin.setRawMode(false);
                 // process.stdin.pause();
                 // rl.close();
-                // process.stdin.setRawMode(false);
                 handleMenuSelection(levels[selectedOptionIndex], morseG, coloursG, null);
                 
                 break;

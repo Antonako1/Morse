@@ -80,22 +80,13 @@ const colours = {
     cyan: "\x1b[36m",
     white: "\x1b[37m",
   };  
-
-
-  
-
-// Initialize readline interface
-const rl = readline.createInterface({
-    input: process.stdin,
-    output: process.stdout,
-});
   
 // Enable listening for keypress events
-process.stdin.setRawMode(true);
-process.stdin.resume();
 // Main function :))
 function main(){
     welcomeScreen(alphabets, colours);
 }
+process.stdin.setRawMode(true);
+process.stdin.resume();
 
 main();

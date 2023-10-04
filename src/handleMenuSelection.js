@@ -76,13 +76,19 @@ async function handleMenuSelection(level, morse, colours, send){
         case "Training":
 
             break;
-        case "Easy":
+        case "Easy Mode":
 
             break;
-        case "Hard":
+        case "Hard Mode":
 
             break;
-    }
+        case "Text to Morse":
+
+            break;
+        case "Morse to Text":
+
+            break;
+        }
 }
 
 
@@ -106,21 +112,22 @@ const keypressListener = (ch, key) => {
         switch (key.name) {
             case 'up': // Arrow up
                 if (index > 0) {
-                    index -= 0.5;
+                    index -= 1;
                     handleMenuSelection(levelG, morseG, coloursG, false);
                 }
                 break;
             case 'down': // Arrow down
                 if (index < levels2.length - 1) {
-                    index += 0.5;
+                    index += 1;
                     
                     handleMenuSelection(levelG, morseG, coloursG, false);
                 }
                 break;
             case 'return':
                 enterMem++
-                if(enterMem === 3){
+                if(enterMem === 2){
                     process.stdin.removeListener('keypress', keypressListener);
+                    // process.stdin.setRawMode(false);
                     handleMenuSelection(levelG, morseG, coloursG, true);
                     enterMem = 0;
                 }

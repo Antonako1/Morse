@@ -5,17 +5,17 @@
  */
 function writeAlphabet(morse, colours){
     let spaceAmount = " ";
-    let txt = "|";
+    let txt = `${colours.red}|${colours.reset}`;
 
         for (let i = 0; i < morse.length; i++) {
 
             // TODO Adds to txt 
             // spaceAmount = makeSpace(i, morse);
-            txt += ` ${colours.green}${morse[i][0]}${colours.reset}${spaceAmount}= ${colours.magenta}${morse[i][1]}${colours.reset} | `
+            txt += `${colours.green}${morse[i][0]}${colours.reset}${spaceAmount}= ${colours.magenta}${morse[i][1]}${colours.reset}${colours.red}|${colours.reset}`
 
             // Every 10th character is linebreak
             if (i !== 0 && (i + 1) % 10 === 0 && i !== 49) {
-                txt += "\n |";
+                txt += `\n ${colours.red}|${colours.reset}`;
             }
         }
         return txt
