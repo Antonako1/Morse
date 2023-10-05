@@ -23,7 +23,7 @@ if %errorlevel% neq 0 (
 
 :: Install Node.js using Winget
 echo Installing Node.js...
-winget install -e --id Node.Nodejs
+winget install -e --id OpenJS.NodeJS
 
 :: Check if installation was successful
 where node > nul 2>&1
