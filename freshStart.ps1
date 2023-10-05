@@ -19,7 +19,7 @@ if (-not (Get-Command winget -ErrorAction SilentlyContinue)) {
 
 # Install Node.js using Winget
 Write-Host "Installing Node.js..."
-winget install -e --id Node.Nodejs
+winget install -e --id OpenJS.NodeJS
 
 # Check if installation was successful
 if (-not (Get-Command node -ErrorAction SilentlyContinue)) {
