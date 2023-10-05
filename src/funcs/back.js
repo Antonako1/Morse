@@ -1,5 +1,3 @@
-const welcomeScreen = require("../welcomeScreen");
-
 /**
  * TODO
  * FIX ALL
@@ -7,27 +5,22 @@ const welcomeScreen = require("../welcomeScreen");
  * from: https://thekenyandev.com/blog/how-to-restart-a-node-js-app-programmatically/#restarting-a-nodejs-app-from-within-itself-without-dependencies
  */
 function back() {
-    // Listen for the 'exit' event.
-    // This is emitted when our app exits.
+    // Listen for the 'exit' event only once.
+  process.once("exit", function () {
+    // Spawn a new process without the script's filename.
+    require("child_process").spawn(
+      process.argv[0], // Use the same Node.js executable
+      process.argv.slice(1), // Exclude the script's filename
+      {
+        cwd: process.cwd(),
+        detached: true,
+        stdio: "inherit"
+      }
+    );
+  });
 
-    // process.on("exit", function () {
-      //  Resolve the `child_process` module, and `spawn`
-      //  a new process.
-      //  The `child_process` module lets us
-      //  access OS functionalities by running any bash command.`.
-    //   require("child_process")
-    //     .spawn(
-    //       process.argv.shift(),
-    //       process.argv,
-    //       {
-    //         cwd: process.cwd(),
-    //         detached: true,
-    //         stdio: "inherit"
-    //       }
-    //     );
-    // });
-    // process.exit();
-    // welcomeScreen()
+  // Trigger the 'exit' event to restart the application.
+  process.exit();
   }
   
 module.exports = back;
