@@ -57,6 +57,7 @@ function StringToMorse(str, alphabet, filePath, data){
 
             dataCopy.inMorse = resultString;
             fs.writeFileSync(filePath, JSON.stringify(dataCopy, null, 2))
+            return;
         } catch (error) {
             console.error("Error saving data:", error)
         }

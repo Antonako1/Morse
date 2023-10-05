@@ -1,5 +1,7 @@
 ### Morse training tool
 
+Windows PowerShell and command prompt are laggy, WSL works the best.
+
 ---
 
 * Easy shows the alphabet

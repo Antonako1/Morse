@@ -8,19 +8,20 @@ const readline = require('readline');
 
 // Globals
 /**
- * Quick training level, to show what to do
- * and how to do it
+ * Normal levels are here
+ * 
  * @param {[]} morse 
  * @param {{}} colours 
  * @param {{}} chosenLevel Json data from the file
  */
-async function tutorial(morse, colours, chosenLevel){
+async function normal(morse, colours, chosenLevel, hard){
     try {
         cls();
-        const txt = writeAlphabet(morse, colours)
-        // Writes morse alphabet
-        process.stdout.write(txt)
-
+        if(!hard){
+            const txt = writeAlphabet(morse, colours)
+            // Writes morse alphabet
+            process.stdout.write(txt)
+        }
         // Writes movement info
         process.stdout.write(`\n Write with ${colours.green}.${colours.reset} and ${colours.green}-${colours.reset}. Separate morse letters with space\n`)
         process.stdout.write(`press ${colours.blue}enter${colours.reset} to finish it. \n`)
@@ -29,7 +30,7 @@ async function tutorial(morse, colours, chosenLevel){
         process.stdin.setRawMode(false);
 
         rl1.question(`Turn: \'${colours.magenta}${chosenLevel.text}${colours.reset}\' to morse: \n > `, (answer) => {
-            const results = checkResults(answer, chosenLevel.inMorse, chosenLevel.name, false);
+            const results = checkResults(answer, chosenLevel.inMorse, chosenLevel.name, hard);
             console.log(results.result + " The correct answer was: " + chosenLevel.inMorse)
             setTimeout(() => {
                 console.log("Results saved to /src/data/results")
@@ -61,4 +62,4 @@ async function tutorial(morse, colours, chosenLevel){
     }
 }
 
-module.exports = tutorial;
+module.exports = normal;

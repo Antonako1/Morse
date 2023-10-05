@@ -24,9 +24,12 @@ function welcomeScreen(morse, colours) {
 
         // Writes morse alphabet
         process.stdout.write(txt)
-
+        
         // Writes movement info
         process.stdout.write(`\n Move with ${colours.blue}arrow${colours.reset} buttons, press ${colours.blue}enter${colours.reset} to choose it. \n`)
+
+        // TODO FIX SOON ???
+        process.stdout.write(`${colours.red}Back button is not working currently, nor is returning to main menu!${colours.reset} \n\n`)
 
         // Writes menu
         const result = mainMenu(levels, selectedOptionIndex, colours)
@@ -72,7 +75,6 @@ const keypressListener2 = (ch, key) => {
                 // process.stdin.pause();
                 // rl.close();
                 handleMenuSelection(levels[selectedOptionIndex], morseG, coloursG, null);
-                
                 break;
         }
     }

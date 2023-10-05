@@ -1,0 +1,4 @@
+You passed! Tutorial 1. 
+ You wrote: - .... .. ... .. ... -- --- .-. ... . -.-.-- 
+ Correct answer was: - .... .. ... .. ... -- --- .-. ... . -.-.--  
+ Hard mode: false

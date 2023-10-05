@@ -36,5 +36,4 @@ if %errorlevel% neq 0 (
 npm install
 
 node main.js
-:: Pause to view the output (remove in production)
 exit

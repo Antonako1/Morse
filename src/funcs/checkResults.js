@@ -1,4 +1,4 @@
-const fs = require("fs")
+const fs = require("fs");
 const path = require('path');
 /**
  * Checks if user entered the correct answers to morse
@@ -8,9 +8,9 @@ const path = require('path');
  * @param {String} realString Real answer from the files
  * @param {String} levelName Levels name.
  */
-function checkResults(userString, realString, levelName){
+function checkResults(userString, realString, levelName, hard){
     let text = "";
-    if(userString === realString){
+    if(String(userString).trim().toLowerCase() === String(realString).trim().toLowerCase()){
         text = "You passed!"
     } else {
         text = "You failed."
@@ -21,17 +21,17 @@ function checkResults(userString, realString, levelName){
     try {
         const resultsDir = path.join(__dirname, '..', 'data', 'results');
         let i = 0;
-        let filePath = path.join(resultsDir, `${levelName}.txt`)
+        let filePath = path.join(resultsDir, `${levelName}_0.txt`)
 
         while (true) {
             if (!fs.existsSync(filePath)) {
                 break;
             }
             i++;
-            filePath = path.join(resultsDir, `${levelName}${i}.txt`);
+            filePath = path.join(resultsDir, `${levelName}_${i}.txt`);
         }
 
-        const data = `${text} ${levelName}. You wrote: ${userString}. Correct answer was: ${realString}`;
+        const data = `${text} ${levelName}. \n You wrote: ${userString} \n Correct answer was: ${realString} \n Hard mode: ${hard}`;
         try{
             fs.writeFileSync(filePath, data);
         } catch (error) {
@@ -40,7 +40,10 @@ function checkResults(userString, realString, levelName){
     } catch (error) {
         console.error("Error saving results:", error)
     }
-    return text;
+    return {
+        result: text,
+        correct: realString
+    }
 }
 
 module.exports = checkResults;
